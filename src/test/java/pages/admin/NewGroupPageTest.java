@@ -1,4 +1,4 @@
-package pages;
+package pages.admin;
 
 import environment.EnvironmentManager;
 import environment.RunEnvironment;
@@ -10,7 +10,7 @@ import pages.login.CCLoginPage;
 
 import java.util.concurrent.TimeUnit;
 
-public class CCLoginPageTest {
+public class NewGroupPageTest {
     private WebDriver driver;
 
     @Before
@@ -26,7 +26,15 @@ public class CCLoginPageTest {
     }
 
     @Test
-    public void do_login() throws InterruptedException {
+    public void addGroup() throws InterruptedException {
+        login();
+        NewGroupPage groupPage = new NewGroupPage(driver);
+        groupPage.actions.click();
+        groupPage.newGroup.click();
+        Thread.sleep(5000);
+    }
+
+    private void login() throws InterruptedException {
         CCLoginPage ccLoginPage = new CCLoginPage(driver);
         ccLoginPage.setByXPathUsername("su");
         ccLoginPage.setByXPathPassword("gw");
