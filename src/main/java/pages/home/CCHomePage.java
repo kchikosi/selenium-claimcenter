@@ -11,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 public class CCHomePage {
     private static final String loginPageUrl = "http://localhost:8080/cc/ClaimCenter.do";
 
-
     /**
      * We will use the helper {@link helper.WebElementsHelper} to determine the xpath for the elements
      */
@@ -21,7 +20,8 @@ public class CCHomePage {
     private WebElement moreOptions;
     @FindBy(xpath = "//*[@id=\"TabBar-ClaimTab\"]/div[1]/div[2]")
     private WebElement byXPathClaimFile;
-
+    @FindBy(className = "gw-TitleBar--title")
+    private WebElement pageTitle;
 
     public CCHomePage(WebDriver driver) {
         driver.get(loginPageUrl);
@@ -35,5 +35,8 @@ public class CCHomePage {
 
     public WebElement getByXPathClaimFile() {
         return byXPathClaimFile;
+    }
+    public boolean isPageOpened() {
+        return pageTitle.getText().contains("Activities");
     }
 }

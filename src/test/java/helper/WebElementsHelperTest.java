@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.home.CCHomePage;
 import pages.home.CCHomePageTest;
 import pages.login.CCLoginPage;
@@ -51,12 +53,18 @@ public class WebElementsHelperTest {
         page.setByXPathUsername("su");
         page.setByXPathPassword("gw");
         page.byXPathClickLogin();
-        Thread.sleep(100);
+        {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#DesktopActivities-DesktopActivitiesScreen-0 > div.gw-TitleBar--titles--container")));
+
+        }
         CCHomePage homePage = new CCHomePage(driver);
+//        Assert.assertTrue(homePage.isPageOpened());
         WebElementsHelper helper = new WebElementsHelper(driver);
         WebElement element = homePage.getMoreOptions();
         By by = By.xpath("//*[@id=\"TabBar\"]/div[2]");
         helper.moveToElement(by);
+        Thread.sleep(100);
     }
 
 }
