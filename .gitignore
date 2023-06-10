@@ -1,0 +1,8 @@
+
+target/classes/helper/WebElementsHelper.class
+*.class
+*.class
+target/classes/helper/WebElementsHelper.class
+target/test-classes/pages/home/CCHomePageTest.class
+target/classes/claimcenter/CCLoginPage.class
+*.class

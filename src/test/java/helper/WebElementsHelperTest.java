@@ -10,8 +10,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import pages.home.CCHomePage;
 import pages.home.CCHomePageTest;
+import pages.login.CCLoginPage;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class WebElementsHelperTest {
@@ -30,10 +34,29 @@ public class WebElementsHelperTest {
         EnvironmentManager.shutDownDriver();
     }
     @Test
-    public void test_listVisibleElements() {
+    public void test_listVisibleElementsOnLoginPage() throws IOException, InterruptedException {
+        CCLoginPage page = new CCLoginPage(driver);
+        page.setByXPathUsername("su");
+        page.setByXPathPassword("gw");
+        page.byXPathClickLogin();
         WebElementsHelper helper = new WebElementsHelper(driver);
         By xPath = By.xpath("//*[@id]");
         boolean result = helper.listVisibleElements(xPath);
         Assert.assertTrue(result);
     }
+
+    @Test
+    public void testMouseOverElement() throws IOException, InterruptedException {
+        CCLoginPage page = new CCLoginPage(driver);
+        page.setByXPathUsername("su");
+        page.setByXPathPassword("gw");
+        page.byXPathClickLogin();
+        Thread.sleep(100);
+        CCHomePage homePage = new CCHomePage(driver);
+        WebElementsHelper helper = new WebElementsHelper(driver);
+        WebElement element = homePage.getMoreOptions();
+        By by = By.xpath("//*[@id=\"TabBar\"]/div[2]");
+        helper.moveToElement(by);
+    }
+
 }

@@ -5,6 +5,10 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -22,13 +26,13 @@ public class WebElementsHelper {
      * List all id elements visible on a given page
      *
      */
-    public boolean listVisibleElements(By xpathExpression) {
+    public boolean listVisibleElements(By xpath) {
         boolean result = false;
         try {
-            List<WebElement> elementList = driver.findElements(xpathExpression);
+            List<WebElement> elementList = driver.findElements(xpath);
             elementList
                     .forEach(s -> LOGGER.info(String.format("Visible : Id:%s Tag:%s Class:%s Text:%s",
-                            s.getAttribute("id"), s.getTagName(), s.getAttribute("class").replace(" ", "NULL"), s.getText().replace(" ", "NULL"))));
+                            s.getAttribute("id"), s.getTagName(), s.getAttribute("class"), s.getText())));
             result = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,4 +40,11 @@ public class WebElementsHelper {
         return result;
     }
 
+    public void moveToElement(By by) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement element = driver.findElement(by);
+        wait.until(ExpectedConditions.visibilityOf(element));
+        Actions action = new Actions(driver);
+        action.moveToElement(element).perform();
+    }
 }

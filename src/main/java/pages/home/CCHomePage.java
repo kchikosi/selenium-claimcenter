@@ -16,16 +16,11 @@ public class CCHomePage {
      * We will use the helper {@link helper.WebElementsHelper} to determine the xpath for the elements
      */
     //locators by xpath
-
-    @FindBy(xpath = "//*[@id=\"gw-center-tab-bar\"]")
-    private WebElement centerTabBar;
-
-    @FindBy(xpath = "//*[@id=\"TabBarWidget--more-options\"]/div[1]")
+    //*[@id="TabBar"]/div[2] - this is the guy
+    @FindBy(xpath = "//*[@id=\"TabBarWidget--more-options\"]")
     private WebElement moreOptions;
-
-//    private WebElement byClassNameClaimOptions;
-//    private WebElement byXPathClaimOptions;
-//    private WebElement byXPathNewClaim;
+    @FindBy(xpath = "//*[@id=\"TabBar-ClaimTab\"]/div[1]/div[2]")
+    private WebElement byXPathClaimFile;
 
 
     public CCHomePage(WebDriver driver) {
@@ -34,11 +29,11 @@ public class CCHomePage {
         PageFactory.initElements(driver, this);
     }
 
-    public WebElement getCenterTabBar() {
-        return centerTabBar;
-    }
-
     public WebElement getMoreOptions() {
         return moreOptions;
+    }
+
+    public WebElement getByXPathClaimFile() {
+        return byXPathClaimFile;
     }
 }
