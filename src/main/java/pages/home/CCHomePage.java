@@ -44,11 +44,4 @@ public class CCHomePage {
         return byXPathNewClaim;
     }
 
-    public WebElement getByXPathMoreOptions() {
-        return byXPathMoreOptions;
-    }
-
-    public WebElement getByCssPageTitle() {
-        return byCssPageTitle;
-    }
 }

@@ -19,22 +19,37 @@ public class CCLoginPage {
     @FindBy(xpath = "//*[@id='Login-LoginScreen-LoginDV-submit']/div")
     private WebElement byXPathSubmitButton;
 
+    /**
+     * constructor
+     * @param driver
+     */
     public CCLoginPage(WebDriver driver) {
         driver.get(loginPageUrl);
         //initialize elements
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * setter
+     * @param password
+     */
     public void setByXPathPassword(String password) {
         this.byXPathPassword.clear();
         this.byXPathPassword.sendKeys(password);
     }
 
+    /**
+     * setter
+     * @param username
+     */
     public void setByXPathUsername(String username) {
         this.byXPathUsername.clear();
         this.byXPathUsername.sendKeys(username);
     }
 
+    /**
+     * click
+     */
     public void byXPathClickLogin() {this.byXPathSubmitButton.click();}
 
 }

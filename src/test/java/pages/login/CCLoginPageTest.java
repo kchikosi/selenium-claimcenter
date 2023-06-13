@@ -1,4 +1,4 @@
-package pages;
+package pages.login;
 
 import environment.EnvironmentManager;
 import environment.RunEnvironment;

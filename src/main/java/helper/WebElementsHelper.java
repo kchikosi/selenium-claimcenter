@@ -45,7 +45,7 @@ public class WebElementsHelper {
         actions.moveToElement(element).perform();
     }
 
-    public Actions moveToElement(By by, WebDriver webDriver) {
+    public Actions moveToElement(By by) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement element = driver.findElement(by);
         wait.until(ExpectedConditions.visibilityOf(element));
