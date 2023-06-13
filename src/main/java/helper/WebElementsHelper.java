@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,14 +16,12 @@ public class WebElementsHelper {
     private static final Logger LOGGER = LogManager.getLogger(WebElementsHelper.class);
     private final WebDriver driver;
 
-
     public WebElementsHelper(WebDriver webDriver) {
         this.driver = webDriver;
     }
 
     /**
      * List all id elements visible on a given page
-     *
      */
     public boolean listVisibleElements(By xpath) {
         boolean result = false;
@@ -40,11 +37,20 @@ public class WebElementsHelper {
         return result;
     }
 
-    public void moveToElement(By by) {
+    public void performActionMoveToElement(By by) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement element = driver.findElement(by);
         wait.until(ExpectedConditions.visibilityOf(element));
-        Actions action = new Actions(driver);
-        action.moveToElement(element).perform();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+    }
+
+    public Actions moveToElement(By by, WebDriver webDriver) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement element = driver.findElement(by);
+        wait.until(ExpectedConditions.visibilityOf(element));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
+        return actions;
     }
 }

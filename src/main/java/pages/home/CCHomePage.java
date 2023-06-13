@@ -15,13 +15,16 @@ public class CCHomePage {
      * We will use the helper {@link helper.WebElementsHelper} to determine the xpath for the elements
      */
     //locators by xpath
-    //*[@id="TabBar"]/div[2] - this is the guy
     @FindBy(xpath = "//*[@id=\"TabBarWidget--more-options\"]")
-    private WebElement moreOptions;
+    private WebElement byXPathMoreOptions;
     @FindBy(xpath = "//*[@id=\"TabBar-ClaimTab\"]/div[1]/div[2]")
     private WebElement byXPathClaimFile;
     @FindBy(className = "gw-TitleBar--title")
-    private WebElement pageTitle;
+    private WebElement byCssPageTitle;
+    @FindBy(xpath = "//*[@id=\"TabBar\"]/div[2]")
+    private WebElement byXPathTabBarWidget;
+    @FindBy(xpath = "//*[@id=\"TabBar-ClaimTab-ClaimTab_FNOLWizard\"]/div/div[2]")
+    private WebElement byXPathNewClaim;
 
     public CCHomePage(WebDriver driver) {
         driver.get(loginPageUrl);
@@ -29,14 +32,23 @@ public class CCHomePage {
         PageFactory.initElements(driver, this);
     }
 
-    public WebElement getMoreOptions() {
-        return moreOptions;
-    }
-
     public WebElement getByXPathClaimFile() {
         return byXPathClaimFile;
     }
-    public boolean isPageOpened() {
-        return pageTitle.getText().contains("Activities");
+
+    public WebElement getByXPathTabBarWidget() {
+        return byXPathTabBarWidget;
+    }
+
+    public WebElement getByXPathNewClaim() {
+        return byXPathNewClaim;
+    }
+
+    public WebElement getByXPathMoreOptions() {
+        return byXPathMoreOptions;
+    }
+
+    public WebElement getByCssPageTitle() {
+        return byCssPageTitle;
     }
 }
