@@ -16,7 +16,7 @@ public class FindOrCreatePolicyPage {
 
     /**
      * constructor
-     * @param driver
+     * @param driver web driver
      */
     public FindOrCreatePolicyPage(WebDriver driver) {
         driver.get(loginPageUrl);
