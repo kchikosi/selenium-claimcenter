@@ -9,7 +9,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -88,19 +90,35 @@ public class CreatePolicyStepOnePageTest {
         actions.click().build().perform();
 
         // Step seven: fill out Step One details
-        try {
-            CreatePolicyStepOnePage stepOnePage = new CreatePolicyStepOnePage(driver);
-            Assert.assertTrue(stepOnePage.getByXPathCreatePolicy().isSelected());
-        } catch (UnhandledAlertException e) {
-            //TODO: try/catch block for "org.openqa.selenium.UnhandledAlertException: unexpected alert open: {Alert text : }"
-            // in this case click 'Cancel' on the alert to proceed
-            e.printStackTrace();
+        CreatePolicyStepOnePage stepOnePage = new CreatePolicyStepOnePage(driver);
+        Assert.assertTrue(stepOnePage.getByXPathCreatePolicy().isSelected());
+        /**
+         * assert loss report type Auto radio button is selected
+         * move to loss date element
+         * enter loss date
+         * move to loss time element
+         * enter loss time
+         * select loss time zone
+         * enter policy number
+         * select policy type
+         * click next
+         */
+        Assert.assertTrue(stepOnePage.getByXPathClaimLossTypeAuto().isSelected());
+        // Step eight: loss date
+        //TODO: use the date picker
+        By lossDatePicker = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_LossDate_dateIcon\"]");
+        actions = helper.moveToElement(lossDatePicker);
+        {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.elementToBeClickable(stepOnePage.getGetByXPathLossDatePicker()));
         }
+        actions.click().build().perform();
 
         //Debug breakpoint
         Thread.sleep(150);
         LOGGER.trace("Completed successfully");
     }
+
 
     /**
      * private functions

@@ -6,8 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class FindOrCreatePolicyPage {
-    private static final String loginPageUrl = "http://localhost:8080/cc/ClaimCenter.do";
-
     //locators by xpath
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-ScreenMode_0\"]")
     private WebElement byXPathFindPolicyRadioButton;
@@ -19,7 +17,6 @@ public class FindOrCreatePolicyPage {
      * @param driver web driver
      */
     public FindOrCreatePolicyPage(WebDriver driver) {
-        driver.get(loginPageUrl);
         //initialize elements
         PageFactory.initElements(driver, this);
     }

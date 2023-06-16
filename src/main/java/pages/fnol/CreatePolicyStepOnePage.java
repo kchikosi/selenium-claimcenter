@@ -6,14 +6,19 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class CreatePolicyStepOnePage {
-    private static final String loginPageUrl = "http://localhost:8080/cc/ClaimCenter.do";
     //locators by xpath
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-ScreenMode_0\"]")
     private WebElement byXPathFindPolicy;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-ScreenMode_1\"]")
     private WebElement byXPathCreatePolicy;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-ClaimLossType_0\"]")
-    private WebElement byXPathClaimLossType;
+    private WebElement byXPathClaimLossTypeAuto;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-ClaimLossType_1\"]")
+    private WebElement byXPathClaimLossTypeHomeOwners;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-ClaimLossType_2\"]")
+    private WebElement getByXPathClaimLossTypeOceanMarine;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-ClaimLossType_3\"]")
+    private WebElement getByXPathClaimLossTypeExcessLiability;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_LossDate\"]")
     private WebElement byXPathClaimLossDate;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTime\"]/div/input[1]")
@@ -34,6 +39,8 @@ public class CreatePolicyStepOnePage {
     private WebElement byXPathCancel;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-Cancel\"]/div/div[2]")
     private WebElement byXPathNext;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_LossDate_dateIcon\"]")
+    private WebElement getByXPathLossDatePicker;
 
 
     /**
@@ -41,7 +48,6 @@ public class CreatePolicyStepOnePage {
      * @param driver web driver
      */
     public CreatePolicyStepOnePage(WebDriver driver) {
-        driver.get(loginPageUrl);
         //initialize elements
         PageFactory.initElements(driver, this);
     }
@@ -54,8 +60,20 @@ public class CreatePolicyStepOnePage {
         return byXPathCreatePolicy;
     }
 
-    public WebElement getByXPathClaimLossType() {
-        return byXPathClaimLossType;
+    public WebElement getByXPathClaimLossTypeAuto() {
+        return byXPathClaimLossTypeAuto;
+    }
+
+    public WebElement getByXPathClaimLossTypeHomeOwners() {
+        return byXPathClaimLossTypeHomeOwners;
+    }
+
+    public WebElement getGetByXPathClaimLossTypeOceanMarine() {
+        return getByXPathClaimLossTypeOceanMarine;
+    }
+
+    public WebElement getGetByXPathClaimLossTypeExcessLiability() {
+        return getByXPathClaimLossTypeExcessLiability;
     }
 
     public WebElement getByXPathClaimLossDate() {
@@ -96,5 +114,9 @@ public class CreatePolicyStepOnePage {
 
     public WebElement getByXPathNext() {
         return byXPathNext;
+    }
+
+    public WebElement getGetByXPathLossDatePicker() {
+        return getByXPathLossDatePicker;
     }
 }
