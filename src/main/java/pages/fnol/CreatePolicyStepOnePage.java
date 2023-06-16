@@ -41,7 +41,8 @@ public class CreatePolicyStepOnePage {
     private WebElement byXPathNext;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_LossDate_dateIcon\"]")
     private WebElement getByXPathLossDatePicker;
-
+    @FindBy(xpath = "//*[@id=\"gw-datePicker\"]/div[2]/div[1]")
+    private WebElement datePickerToday;
 
     /**
      * constructor
@@ -118,5 +119,9 @@ public class CreatePolicyStepOnePage {
 
     public WebElement getGetByXPathLossDatePicker() {
         return getByXPathLossDatePicker;
+    }
+
+    public WebElement getDatePickerToday() {
+        return datePickerToday;
     }
 }

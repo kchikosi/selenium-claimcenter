@@ -105,7 +105,6 @@ public class CreatePolicyStepOnePageTest {
          */
         Assert.assertTrue(stepOnePage.getByXPathClaimLossTypeAuto().isSelected());
         // Step eight: loss date
-        //TODO: use the date picker
         By lossDatePicker = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_LossDate_dateIcon\"]");
         actions = helper.moveToElement(lossDatePicker);
         {
@@ -113,7 +112,15 @@ public class CreatePolicyStepOnePageTest {
             wait.until(ExpectedConditions.elementToBeClickable(stepOnePage.getGetByXPathLossDatePicker()));
         }
         actions.click().build().perform();
+        {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.visibilityOf(stepOnePage.getDatePickerToday()));
+        }
+        By today = By.xpath("//*[@id=\"gw-datePicker\"]/div[2]/div[1]");
+        actions = helper.moveToElement(today);
+        actions.click().build().perform();
 
+        // Step nine: loss time
         //Debug breakpoint
         Thread.sleep(150);
         LOGGER.trace("Completed successfully");
