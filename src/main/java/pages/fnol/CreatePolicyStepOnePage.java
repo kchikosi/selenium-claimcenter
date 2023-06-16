@@ -43,6 +43,8 @@ public class CreatePolicyStepOnePage {
     private WebElement getByXPathLossDatePicker;
     @FindBy(xpath = "//*[@id=\"gw-datePicker\"]/div[2]/div[1]")
     private WebElement datePickerToday;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTimeZone\"]/div/div/select/option[4]")
+    private WebElement easternTime;
 
     /**
      * constructor
@@ -123,5 +125,9 @@ public class CreatePolicyStepOnePage {
 
     public WebElement getDatePickerToday() {
         return datePickerToday;
+    }
+
+    public WebElement getEasternTime() {
+        return easternTime;
     }
 }

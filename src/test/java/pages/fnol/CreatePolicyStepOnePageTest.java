@@ -10,8 +10,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -54,8 +54,7 @@ public class CreatePolicyStepOnePageTest {
         //Step two: move options dropdown
         By moreOptions = By.xpath("//*[@id=\"TabBarWidget--more-options\"]");
         {
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.visibilityOf(homePage.getByXPathTabBarWidget()));
+            waitUntilVisibilityOf(homePage.getByXPathTabBarWidget());
 
         }
 
@@ -63,16 +62,14 @@ public class CreatePolicyStepOnePageTest {
         actions = helper.moveToElement(moreOptions);
         actions.click().build().perform();
         {
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.visibilityOf(homePage.getByXPathClaimFile()));
+            waitUntilVisibilityOf(homePage.getByXPathClaimFile());
         }
 
         //Step four: click claim file
         By claimFile = By.xpath("//*[@id=\"TabBar-ClaimTab\"]/div[1]/div[2]");
         helper.performActionMoveToElement(claimFile);
         {
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.visibilityOf(homePage.getByXPathNewClaim()));
+            waitUntilVisibilityOf(homePage.getByXPathNewClaim());
         }
 
         //Step five: move to new claim file option
@@ -112,18 +109,37 @@ public class CreatePolicyStepOnePageTest {
             wait.until(ExpectedConditions.elementToBeClickable(stepOnePage.getGetByXPathLossDatePicker()));
         }
         actions.click().build().perform();
-        {
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.visibilityOf(stepOnePage.getDatePickerToday()));
-        }
+        waitUntilVisibilityOf(stepOnePage.getDatePickerToday());
         By today = By.xpath("//*[@id=\"gw-datePicker\"]/div[2]/div[1]");
         actions = helper.moveToElement(today);
         actions.click().build().perform();
 
         // Step nine: loss time
+        By lossTime = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTime\"]/div/input[1]");
+        actions = helper.moveToElement(lossTime);
+        actions.click().build().perform();
+        stepOnePage.getByXPathClaimLossTime().sendKeys("12:00");
+
+        By amPmButton = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTime\"]/div/input[2]");
+        actions = helper.moveToElement(amPmButton);
+        actions.click().build().perform();
+
+        // Step ten: time zone select
+        By timeZoneSelect = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTimeZone\"]/div/div/select");
+        actions = helper.moveToElement(timeZoneSelect);
+        actions.click().build().perform();
+        waitUntilVisibilityOf(stepOnePage.getEasternTime());
+        By easternTime = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTimeZone\"]/div/div/select/option[4]");
+        actions = helper.moveToElement(easternTime);
+        actions.click().build().perform();
         //Debug breakpoint
         Thread.sleep(150);
         LOGGER.trace("Completed successfully");
+    }
+
+    private void waitUntilVisibilityOf(WebElement datePickerToday) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOf(datePickerToday));
     }
 
 
