@@ -25,8 +25,6 @@ public class CreatePolicyStepOnePage {
     private WebElement byXPathClaimLossTime;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTime\"]/div/input[2]")
     private WebElement byXPathAmPmInput;
-    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTimeZone\"]/div/div/select")
-    private WebElement byXPathTimeZoneSelect;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-PolicyNumber\"]/div/input")
     private WebElement byXPathPolicyNumber;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Type\"]/div/div/select")
@@ -39,15 +37,20 @@ public class CreatePolicyStepOnePage {
     private WebElement byXPathCancel;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-Cancel\"]/div/div[2]")
     private WebElement byXPathNext;
-    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_LossDate_dateIcon\"]")
-    private WebElement getByXPathLossDatePicker;
     @FindBy(xpath = "//*[@id=\"gw-datePicker\"]/div[2]/div[1]")
-    private WebElement datePickerToday;
-    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTimeZone\"]/div/div/select/option[4]")
-    private WebElement easternTime;
+    private WebElement ByXPathDatePickerToday;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTimeZone\"]/div/div/select")
+    private WebElement byXPathLossTimeZone;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Type\"]/div/div/select")
+    private WebElement byXPathPolicyTypePicker;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-Cancel\"]/div/div[2]")
+    private WebElement byXPathCancelButton;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-Next\"]")
+    private WebElement byXpathNextButton;
 
     /**
      * constructor
+     *
      * @param driver web driver
      */
     public CreatePolicyStepOnePage(WebDriver driver) {
@@ -91,10 +94,6 @@ public class CreatePolicyStepOnePage {
         return byXPathAmPmInput;
     }
 
-    public WebElement getByXPathTimeZoneSelect() {
-        return byXPathTimeZoneSelect;
-    }
-
     public WebElement getByXPathPolicyNumber() {
         return byXPathPolicyNumber;
     }
@@ -119,15 +118,15 @@ public class CreatePolicyStepOnePage {
         return byXPathNext;
     }
 
-    public WebElement getGetByXPathLossDatePicker() {
-        return getByXPathLossDatePicker;
+    public WebElement getByXPathDatePickerToday() {
+        return ByXPathDatePickerToday;
     }
 
-    public WebElement getDatePickerToday() {
-        return datePickerToday;
+    public WebElement getByXPathLossTimeZone() {
+        return byXPathLossTimeZone;
     }
 
-    public WebElement getEasternTime() {
-        return easternTime;
+    public WebElement getByXPathPolicyTypePicker() {
+        return byXPathPolicyTypePicker;
     }
 }

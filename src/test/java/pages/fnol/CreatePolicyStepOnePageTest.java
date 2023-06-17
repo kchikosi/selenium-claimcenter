@@ -14,6 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.home.CCHomePage;
 import pages.login.CCLoginPage;
@@ -104,12 +105,8 @@ public class CreatePolicyStepOnePageTest {
         // Step eight: loss date
         By lossDatePicker = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_LossDate_dateIcon\"]");
         actions = helper.moveToElement(lossDatePicker);
-        {
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.elementToBeClickable(stepOnePage.getGetByXPathLossDatePicker()));
-        }
         actions.click().build().perform();
-        waitUntilVisibilityOf(stepOnePage.getDatePickerToday());
+        waitUntilVisibilityOf(stepOnePage.getByXPathDatePickerToday());
         By today = By.xpath("//*[@id=\"gw-datePicker\"]/div[2]/div[1]");
         actions = helper.moveToElement(today);
         actions.click().build().perform();
@@ -128,10 +125,35 @@ public class CreatePolicyStepOnePageTest {
         By timeZoneSelect = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTimeZone\"]/div/div/select");
         actions = helper.moveToElement(timeZoneSelect);
         actions.click().build().perform();
-        waitUntilVisibilityOf(stepOnePage.getEasternTime());
-        By easternTime = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTimeZone\"]/div/div/select/option[4]");
-        actions = helper.moveToElement(easternTime);
+        {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.elementToBeClickable(stepOnePage.getByXPathLossTimeZone()));
+        }
+        Select timeZone = new Select(driver.findElement(timeZoneSelect));
+        timeZone.selectByValue("US.Eastern");
+
+        // Step eleven: policy number
+        By policyNumber = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-PolicyNumber\"]/div/input");
+        helper.performActionMoveToElement(policyNumber);
+        stepOnePage.getByXPathPolicyNumber().sendKeys("10102023KC");
+
+        // Step twelve: policy type
+        By policyTypeSelect = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Type\"]/div/div/select");
+        actions = helper.moveToElement(policyNumber);
         actions.click().build().perform();
+        {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.elementToBeClickable(stepOnePage.getByXPathPolicyTypePicker()));
+        }
+        Select policyType = new Select(driver.findElement(policyTypeSelect));
+        policyType.selectByValue("auto_per");
+
+        //wait until Next button is enabled
+        By nextButton = By.xpath("//*[@id=\"FNOLWizard-Next\"]");
+        {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.elementToBeClickable(nextButton));
+        }
         //Debug breakpoint
         Thread.sleep(150);
         LOGGER.trace("Completed successfully");
