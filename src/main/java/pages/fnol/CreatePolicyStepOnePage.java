@@ -47,6 +47,13 @@ public class CreatePolicyStepOnePage {
     private WebElement byXPathCancelButton;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-Next\"]")
     private WebElement byXpathNextButton;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-lossTypeSection-NewClaimPolicyGeneralPanelSet-NewClaimPolicyGeneralDV-1\"]/div[1]")
+    private WebElement byXPathBasicInformationLabel;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-OriginalLegacyFile_1\"]")
+    private WebElement byXPathOriginalLegacyFileNoButton;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-OriginalLegacyFile_0\"]")
+    private WebElement byXPathOriginalLegacyFileYesButton;
+
 
     /**
      * constructor
@@ -128,5 +135,25 @@ public class CreatePolicyStepOnePage {
 
     public WebElement getByXPathPolicyTypePicker() {
         return byXPathPolicyTypePicker;
+    }
+
+    public WebElement getByXPathCancelButton() {
+        return byXPathCancelButton;
+    }
+
+    public WebElement getByXpathNextButton() {
+        return byXpathNextButton;
+    }
+
+    public WebElement getByXPathBasicInformationLabel() {
+        return byXPathBasicInformationLabel;
+    }
+
+    public WebElement getByXPathOriginalLegacyFileYesButton() {
+        return byXPathOriginalLegacyFileYesButton;
+    }
+
+    public WebElement getByXPathOriginalLegacyFileNoButton() {
+        return byXPathOriginalLegacyFileNoButton;
     }
 }
