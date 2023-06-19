@@ -14,6 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.contact.Person;
 import pages.home.CCHomePage;
 import pages.login.CCLoginPage;
 
@@ -140,7 +141,56 @@ public class CreatePolicyStepOnePageTest {
         actions = helper.moveToElement(legacyYesButton);
         actions.click().build().perform();
 
-        Thread.sleep(1000);
+        // Step fourteen: policy effective date
+        By policyEffectiveDatePicker = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-lossTypeSection-NewClaimPolicyGeneralPanelSet-NewClaimPolicyGeneralDV-EffectiveDate_dateIcon\"]");
+        actions = helper.moveToElement(policyEffectiveDatePicker);
+        actions.click().build().perform();
+        waitUntilVisibilityOf(stepOnePage.getByXPathEffectiveDatePickerToday());
+        By effDateToday = By.xpath("//*[@id=\"gw-datePicker\"]/div[2]/div[1]");
+        actions = helper.moveToElement(effDateToday);
+        actions.click().build().perform();
+
+        // Step fifteen: policy expiration date
+        By policyExpirationDate = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-lossTypeSection-NewClaimPolicyGeneralPanelSet-NewClaimPolicyGeneralDV-ExpirationDate_dateIcon\"]");
+        actions = helper.moveToElement(policyExpirationDate);
+        actions.click().build().perform();
+        waitUntilVisibilityOf(stepOnePage.getByXPathExpirationDatePickerToday());
+        By expDateToday = By.xpath("//*[@id=\"gw-datePicker\"]/div[2]/div[1]");
+        actions = helper.moveToElement(expDateToday);
+        actions.click().build().perform();
+
+        //Step sixteen: Add insured contact details
+        By insuredMenu = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-lossTypeSection-NewClaimPolicyGeneralPanelSet-NewClaimPolicyGeneralDV-Insured_Name-Insured_NameMenuIcon\"]/div[1]");
+        actions = helper.moveToElement(insuredMenu);
+        actions.click().build().perform();
+        waitUntilVisibilityOf(stepOnePage.getNewPerson());
+        By newPerson = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-lossTypeSection-NewClaimPolicyGeneralPanelSet-NewClaimPolicyGeneralDV-Insured_Name-ClaimNewContactPickerMenuItemSet-NewContactPickerMenuItemSet_NewPerson\"]");
+        actions = helper.moveToElement(newPerson);
+        actions.click().build().perform();
+
+        //Step seventeen: add new person
+        Person person = new Person(driver);
+        waitUntilVisibilityOf(person.getPageTitle());
+        Assert.assertTrue(person.getPageTitle().getText().contains("Person"));
+
+        //TODO: enter person details
+
+        // Cancel operation for now.
+        By cancel = By.xpath("//*[@id=\"NewContactPopup-ContactDetail2Screen-ContactBasicsDV_tb-ex_ContactDetail2ToolbarButtonSet-ex_ContactDetailCancelButton\"]/div");
+        actions = helper.moveToElement(cancel);
+        actions.click().build().perform();
+        //TODO: handle alert from cancel operation
+/*
+        //Start: return to step one after entering details - DO NOT DELETE !!!
+        By returnToStepOne = By.xpath("//*[@id=\"NewContactPopup-__crumb__\"]");
+        actions = helper.moveToElement(returnToStepOne);
+        {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            wait.until(ExpectedConditions.elementToBeClickable(person.getReturnToStepOne()));
+        }
+        actions.click().build().perform();
+        // End: return to step one after entering person details
+*/
 
         By basicInfoLabel = By.xpath("//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-lossTypeSection-NewClaimPolicyGeneralPanelSet-NewClaimPolicyGeneralDV-1\"]/div[1]");
         waitUntilVisibilityOf(stepOnePage.getByXPathBasicInformationLabel());

@@ -38,7 +38,7 @@ public class CreatePolicyStepOnePage {
     @FindBy(xpath = "//*[@id=\"FNOLWizard-Cancel\"]/div/div[2]")
     private WebElement byXPathNext;
     @FindBy(xpath = "//*[@id=\"gw-datePicker\"]/div[2]/div[1]")
-    private WebElement ByXPathDatePickerToday;
+    private WebElement byXPathDatePickerToday;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Claim_lossTimeZone\"]/div/div/select")
     private WebElement byXPathLossTimeZone;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-Type\"]/div/div/select")
@@ -53,8 +53,18 @@ public class CreatePolicyStepOnePage {
     private WebElement byXPathOriginalLegacyFileNoButton;
     @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-OriginalLegacyFile_0\"]")
     private WebElement byXPathOriginalLegacyFileYesButton;
-
-
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-lossTypeSection-NewClaimPolicyGeneralPanelSet-NewClaimPolicyGeneralDV-EffectiveDate_dateIcon\"]")
+    private WebElement byXPathEffectiveDatePicker;
+    @FindBy(xpath = "//*[@id=\"gw-datePicker\"]/div[2]/div[1]")
+    private WebElement byXPathEffectiveDatePickerToday;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-lossTypeSection-NewClaimPolicyGeneralPanelSet-NewClaimPolicyGeneralDV-ExpirationDate_dateIcon\"]")
+    private WebElement byXPathExpirationDatePicker;
+    @FindBy(xpath = "//*[@id=\"gw-datePicker\"]/div[2]/div[1]")
+    private WebElement byXPathExpirationDatePickerToday;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-lossTypeSection-NewClaimPolicyGeneralPanelSet-NewClaimPolicyGeneralDV-Insured_Name-Insured_NameMenuIcon\"]/div[1]")
+    private WebElement insuredToggleSubMenu;
+    @FindBy(xpath = "//*[@id=\"FNOLWizard-FNOLWizard_FindPolicyScreen-FNOLWizardFindPolicyPanelSet-lossTypeSection-NewClaimPolicyGeneralPanelSet-NewClaimPolicyGeneralDV-Insured_Name-ClaimNewContactPickerMenuItemSet-NewContactPickerMenuItemSet_NewPerson\"]")
+    private WebElement newPerson;
     /**
      * constructor
      *
@@ -126,7 +136,7 @@ public class CreatePolicyStepOnePage {
     }
 
     public WebElement getByXPathDatePickerToday() {
-        return ByXPathDatePickerToday;
+        return byXPathDatePickerToday;
     }
 
     public WebElement getByXPathLossTimeZone() {
@@ -155,5 +165,29 @@ public class CreatePolicyStepOnePage {
 
     public WebElement getByXPathOriginalLegacyFileNoButton() {
         return byXPathOriginalLegacyFileNoButton;
+    }
+
+    public WebElement getByXPathEffectiveDatePicker() {
+        return byXPathEffectiveDatePicker;
+    }
+
+    public WebElement getByXPathEffectiveDatePickerToday() {
+        return byXPathEffectiveDatePickerToday;
+    }
+
+    public WebElement getByXPathExpirationDatePicker() {
+        return byXPathExpirationDatePicker;
+    }
+
+    public WebElement getByXPathExpirationDatePickerToday() {
+        return byXPathExpirationDatePickerToday;
+    }
+
+    public WebElement getInsuredToggleSubMenu() {
+        return insuredToggleSubMenu;
+    }
+
+    public WebElement getNewPerson() {
+        return newPerson;
     }
 }
